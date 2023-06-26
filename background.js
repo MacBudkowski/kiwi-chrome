@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-async function getCurrntTabInfo() {
+async function getCurrentTabInfo() {
   return new Promise((resolve) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const currentTab = tabs[0];
@@ -17,6 +17,12 @@ async function getCurrntTabInfo() {
     });
   });
 }
+
+chrome.action.onClicked.addListener((tab) => {
+  getCurrentTabInfo().then((tabInfo) => {
+    openNewTabWithTemplate(tabInfo.currentTabUrl, tabInfo.currentTabTitle);
+  });
+});
 
 function openNewTabWithTemplate(url, title) {
   const template = `https://news.kiwistand.com/submit?url=${encodeURIComponent(
