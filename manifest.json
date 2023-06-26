@@ -5,8 +5,7 @@
   "description": "A Chrome extension that submits the current tab's URL and title to news.kiwistand.com",
   "permissions": ["tabs", "activeTab"],
   "action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_icon": "icon.png"
   },
   "background": {
     "service_worker": "background.js"
