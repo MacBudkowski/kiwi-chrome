@@ -1,11 +1,3 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.message === "getUrlAndTitle") {
-    getCurrentTabInfo().then((tabInfo) => {
-      openNewTabWithTemplate(tabInfo.currentTabUrl, tabInfo.currentTabTitle);
-    });
-  }
-});
-
 async function getCurrentTabInfo() {
   return new Promise((resolve) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
